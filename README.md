@@ -1,5 +1,9 @@
 # A Laravel Nova tool for Spatie's laravel-permission library
 
+![screenshot 1](https://raw.githubusercontent.com/vyuldashev/nova-spatie-permission/master/docs/user-resource.png)
+![screenshot 2](https://raw.githubusercontent.com/vyuldashev/nova-spatie-permission/master/docs/roles-resource.png)
+![screenshot 3](https://raw.githubusercontent.com/vyuldashev/nova-spatie-permission/master/docs/permissions-resource.png)
+
 ## Installation
 
 You can install the package in to a Laravel app that uses [Nova](https://nova.laravel.com) via composer:
