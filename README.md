@@ -21,7 +21,7 @@ public function tools()
 {
     return [
         // ...
-        new \Vyuldashev\NovaSpatiePermission\NovaSpatiePermissionTool()
+        new \Vyuldashev\NovaSpatiePermission\NovaSpatiePermissionTool(),
     ];
 }
 ```
