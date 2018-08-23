@@ -2,14 +2,13 @@
 
 namespace Vyuldashev\NovaSpatiePermission;
 
-use Laravel\Nova\Fields\BelongsToMany;
-use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Resource;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Resource;
+use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\BelongsToMany;
 
 class Role extends Resource
 {
