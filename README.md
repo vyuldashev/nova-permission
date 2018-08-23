@@ -33,8 +33,8 @@ public function fields(Request $request)
 {
     return [
         // ...
-        MorphToMany::make('Roles', 'roles', \Vyuldashev\NovaSpatieLaravelPermissionTool\Role::class),
-        MorphToMany::make('Permissions', 'permissions', \Vyuldashev\NovaSpatieLaravelPermissionTool\Permission::class),
+        MorphToMany::make('Roles', 'roles', \Vyuldashev\NovaSpatiePermission\Role::class),
+        MorphToMany::make('Permissions', 'permissions', \Vyuldashev\NovaSpatiePermission\Permission::class),
     ];
 }
 ```
