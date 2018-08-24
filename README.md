@@ -36,6 +36,9 @@ public function tools()
 Finally, add `MorphToMany` fields to you `app/Nova/User` resource:
 
 ```php
+// ...
+use Laravel\Nova\Fields\MorphToMany;
+
 public function fields(Request $request)
 {
     return [
