@@ -1,11 +1,11 @@
 <?php
 
-namespace Vyuldashev\NovaSpatiePermission;
+namespace Vyuldashev\NovaPermission;
 
 use Laravel\Nova\Nova;
 use Laravel\Nova\Tool;
 
-class NovaSpatiePermissionTool extends Tool
+class NovaPermissionTool extends Tool
 {
     /**
      * Perform any tasks that need to happen when the tool is booted.
@@ -14,9 +14,6 @@ class NovaSpatiePermissionTool extends Tool
      */
     public function boot()
     {
-        Nova::script('nova-spatie-laravel-permission-tool', __DIR__.'/../dist/js/tool.js');
-        Nova::style('nova-spatie-laravel-permission-tool', __DIR__.'/../dist/css/tool.css');
-
         Nova::resources([
             Role::class,
             Permission::class,
@@ -30,6 +27,6 @@ class NovaSpatiePermissionTool extends Tool
      */
     public function renderNavigation()
     {
-        return view('nova-spatie-laravel-permission-tool::navigation');
+        return view('nova-permission-tool::navigation');
     }
 }

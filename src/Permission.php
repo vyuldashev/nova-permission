@@ -1,6 +1,6 @@
 <?php
 
-namespace Vyuldashev\NovaSpatiePermission;
+namespace Vyuldashev\NovaPermission;
 
 use Laravel\Nova\Resource;
 use Laravel\Nova\Fields\ID;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Vyuldashev\NovaSpatiePermission;
+namespace Vyuldashev\NovaPermission;
 
 use Laravel\Nova\Nova;
 use Laravel\Nova\Events\ServingNova;
@@ -15,7 +15,7 @@ class ToolServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'nova-spatie-laravel-permission-tool');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'nova-permission-tool');
 
         $this->app->booted(function () {
             $this->routes();

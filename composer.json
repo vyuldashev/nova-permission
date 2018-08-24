@@ -1,5 +1,5 @@
 {
-  "name": "vyuldashev/nova-spatie-permission",
+  "name": "vyuldashev/nova-permission",
   "description": "A Laravel Nova tool for Spatie's Permission library.",
   "keywords": [
     "laravel",
@@ -13,13 +13,13 @@
   },
   "autoload": {
     "psr-4": {
-      "Vyuldashev\\NovaSpatiePermission\\": "src/"
+      "Vyuldashev\\NovaPermission\\": "src/"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "Vyuldashev\\NovaSpatiePermission\\ToolServiceProvider"
+        "Vyuldashev\\NovaPermission\\ToolServiceProvider"
       ]
     }
   },

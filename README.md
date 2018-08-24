@@ -28,7 +28,7 @@ public function tools()
 {
     return [
         // ...
-        new \Vyuldashev\NovaSpatiePermission\NovaSpatiePermissionTool(),
+        new \Vyuldashev\NovaPermission\NovaPermissionTool(),
     ];
 }
 ```
@@ -43,8 +43,8 @@ public function fields(Request $request)
 {
     return [
         // ...
-        MorphToMany::make('Roles', 'roles', \Vyuldashev\NovaSpatiePermission\Role::class),
-        MorphToMany::make('Permissions', 'permissions', \Vyuldashev\NovaSpatiePermission\Permission::class),
+        MorphToMany::make('Roles', 'roles', \Vyuldashev\NovaPermission\Role::class),
+        MorphToMany::make('Permissions', 'permissions', \Vyuldashev\NovaPermission\Permission::class),
     ];
 }
 ```
