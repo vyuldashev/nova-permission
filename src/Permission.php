@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\DateTime;
+use Spatie\Permission\PermissionRegistrar;
 
 class Permission extends Resource
 {
@@ -38,7 +39,7 @@ class Permission extends Resource
 
     public static function getModel()
     {
-        return config('permission.models.permission');
+        return app(PermissionRegistrar::class)->getPermissionClass();
     }
 
     /**

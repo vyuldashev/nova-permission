@@ -9,6 +9,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\BelongsToMany;
+use Spatie\Permission\PermissionRegistrar;
 
 class Role extends Resource
 {
@@ -39,7 +40,7 @@ class Role extends Resource
 
     public static function getModel()
     {
-        return config('permission.models.role');
+        return app(PermissionRegistrar::class)->getRoleClass();
     }
 
     /**
