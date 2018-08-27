@@ -2,11 +2,11 @@
 
 namespace Vyuldashev\NovaPermission;
 
-use Illuminate\Validation\Rule;
 use Laravel\Nova\Resource;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
+use Illuminate\Validation\Rule;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\BelongsToMany;
@@ -71,8 +71,8 @@ class Permission extends Resource
 
             Text::make(__('nova-permission-tool::permissions.name'), 'name')
                 ->rules(['required', 'string', 'max:255'])
-                ->creationRules('unique:' . config('permission.table_names.permissions'))
-                ->updateRules('unique:' . config('permission.table_names.permissions') . ',name,{{resourceId}}'),
+                ->creationRules('unique:'.config('permission.table_names.permissions'))
+                ->updateRules('unique:'.config('permission.table_names.permissions').',name,{{resourceId}}'),
 
             Select::make(__('nova-permission-tool::permissions.guard_name'), 'guard_name')
                 ->options($guardOptions->toArray())
