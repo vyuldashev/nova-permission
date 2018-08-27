@@ -43,6 +43,16 @@ class Role extends Resource
         return app(PermissionRegistrar::class)->getRoleClass();
     }
 
+    public static function label()
+    {
+        return __('nova-permission-tool::resources.Roles');
+    }
+
+    public static function singularLabel()
+    {
+        return __('nova-permission-tool::resources.Role');
+    }
+
     /**
      * Get the fields displayed by the resource.
      *
@@ -58,14 +68,14 @@ class Role extends Resource
         return [
             ID::make()->sortable(),
 
-            Text::make('Name'),
+            Text::make(__('nova-permission-tool::roles.name'), 'name'),
 
-            Select::make('Guard Name')->options($guardOptions->toArray()),
+            Select::make(__('nova-permission-tool::roles.guard_name'), 'guard_name')->options($guardOptions->toArray()),
 
-            DateTime::make('Created at')->exceptOnForms(),
-            DateTime::make('Updated at')->exceptOnForms(),
+            DateTime::make(__('nova-permission-tool::roles.created_at'), 'created_at')->exceptOnForms(),
+            DateTime::make(__('nova-permission-tool::roles.updated_at'), 'updated_at')->exceptOnForms(),
 
-            BelongsToMany::make('Permissions'),
+            BelongsToMany::make(__('nova-permission-tool::resources.Permissions'), 'permissions', Permission::class),
         ];
     }
 

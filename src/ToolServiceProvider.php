@@ -16,6 +16,11 @@ class ToolServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'nova-permission-tool');
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'nova-permission-tool');
+
+        $this->publishes([
+            __DIR__.'/../resources/lang' => resource_path('lang/vendor/nova-permission-tool'),
+        ], 'nova-permission-tool-lang');
 
         $this->app->booted(function () {
             $this->routes();

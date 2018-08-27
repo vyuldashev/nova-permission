@@ -2,6 +2,7 @@
 
 namespace Vyuldashev\NovaPermission;
 
+use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Resource;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
@@ -42,6 +43,16 @@ class Permission extends Resource
         return app(PermissionRegistrar::class)->getPermissionClass();
     }
 
+    public static function label()
+    {
+        return __('nova-permission-tool::resources.Permissions');
+    }
+
+    public static function singularLabel()
+    {
+        return __('nova-permission-tool::resources.Permission');
+    }
+
     /**
      * Get the fields displayed by the resource.
      *
@@ -57,12 +68,14 @@ class Permission extends Resource
         return [
             ID::make()->sortable(),
 
-            Text::make('Name'),
+            Text::make(__('nova-permission-tool::permissions.name'), 'name'),
 
-            Select::make('Guard Name')->options($guardOptions->toArray()),
+            Select::make(__('nova-permission-tool::permissions.guard_name'), 'guard_name')->options($guardOptions->toArray()),
 
-            DateTime::make('Created at')->exceptOnForms(),
-            DateTime::make('Updated at')->exceptOnForms(),
+            DateTime::make(__('nova-permission-tool::permissions.created_at'), 'created_at')->exceptOnForms(),
+            DateTime::make(__('nova-permission-tool::permissions.updated_at'), 'updated_at')->exceptOnForms(),
+
+            BelongsToMany::make(__('nova-permission-tool::resources.Roles'), 'roles', Role::class),
         ];
     }
 
