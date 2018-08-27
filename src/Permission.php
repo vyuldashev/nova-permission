@@ -2,6 +2,7 @@
 
 namespace Vyuldashev\NovaPermission;
 
+use Illuminate\Validation\Rule;
 use Laravel\Nova\Resource;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
@@ -68,9 +69,14 @@ class Permission extends Resource
         return [
             ID::make()->sortable(),
 
-            Text::make(__('nova-permission-tool::permissions.name'), 'name'),
+            Text::make(__('nova-permission-tool::permissions.name'), 'name')
+                ->rules(['required', 'string', 'max:255'])
+                ->creationRules('unique:' . config('permission.table_names.permissions'))
+                ->updateRules('unique:' . config('permission.table_names.permissions') . ',name,{{resourceId}}'),
 
-            Select::make(__('nova-permission-tool::permissions.guard_name'), 'guard_name')->options($guardOptions->toArray()),
+            Select::make(__('nova-permission-tool::permissions.guard_name'), 'guard_name')
+                ->options($guardOptions->toArray())
+                ->rules(['required', Rule::in($guardOptions)]),
 
             DateTime::make(__('nova-permission-tool::permissions.created_at'), 'created_at')->exceptOnForms(),
             DateTime::make(__('nova-permission-tool::permissions.updated_at'), 'updated_at')->exceptOnForms(),
@@ -82,7 +88,7 @@ class Permission extends Resource
     /**
      * Get the cards available for the request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return array
      */
     public function cards(Request $request)
@@ -93,7 +99,7 @@ class Permission extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return array
      */
     public function filters(Request $request)
@@ -104,7 +110,7 @@ class Permission extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return array
      */
     public function lenses(Request $request)
@@ -115,7 +121,7 @@ class Permission extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return array
      */
     public function actions(Request $request)

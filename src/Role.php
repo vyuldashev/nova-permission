@@ -2,6 +2,7 @@
 
 namespace Vyuldashev\NovaPermission;
 
+use Illuminate\Validation\Rule;
 use Laravel\Nova\Resource;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
@@ -68,9 +69,14 @@ class Role extends Resource
         return [
             ID::make()->sortable(),
 
-            Text::make(__('nova-permission-tool::roles.name'), 'name'),
+            Text::make(__('nova-permission-tool::roles.name'), 'name')
+                ->rules(['required', 'string', 'max:255'])
+                ->creationRules('unique:' . config('permission.table_names.roles'))
+                ->updateRules('unique:' . config('permission.table_names.roles') . ',name,{{resourceId}}'),
 
-            Select::make(__('nova-permission-tool::roles.guard_name'), 'guard_name')->options($guardOptions->toArray()),
+            Select::make(__('nova-permission-tool::roles.guard_name'), 'guard_name')
+                ->options($guardOptions->toArray())
+                ->rules(['required', Rule::in($guardOptions)]),
 
             DateTime::make(__('nova-permission-tool::roles.created_at'), 'created_at')->exceptOnForms(),
             DateTime::make(__('nova-permission-tool::roles.updated_at'), 'updated_at')->exceptOnForms(),
