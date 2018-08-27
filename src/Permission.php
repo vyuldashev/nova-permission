@@ -2,13 +2,13 @@
 
 namespace Vyuldashev\NovaPermission;
 
-use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Resource;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\BelongsToMany;
 use Spatie\Permission\PermissionRegistrar;
 
 class Permission extends Resource
