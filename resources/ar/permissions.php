@@ -1,4 +1,5 @@
 <?php
+
 return [
     'name' => 'الاسم',
     'guard_name' => 'اسم الحارس',
