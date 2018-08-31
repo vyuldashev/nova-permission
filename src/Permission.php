@@ -2,6 +2,8 @@
 
 namespace Vyuldashev\NovaPermission;
 
+use Laravel\Nova\Fields\MorphToMany;
+use Laravel\Nova\Nova;
 use Laravel\Nova\Resource;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
@@ -66,6 +68,8 @@ class Permission extends Resource
             return [$key => $key];
         });
 
+        $userResource = Nova::resourceForModel(getModelForGuard($this->guard_name));
+
         return [
             ID::make()->sortable(),
 
@@ -87,7 +91,8 @@ class Permission extends Resource
             DateTime::make(__('nova-permission-tool::permissions.created_at'), 'created_at')->exceptOnForms(),
             DateTime::make(__('nova-permission-tool::permissions.updated_at'), 'updated_at')->exceptOnForms(),
 
-            BelongsToMany::make(__('nova-permission-tool::resources.Roles'), 'roles', Role::class),
+            BelongsToMany::make(__('nova-permission-tool::resources.Roles'), 'roles', Role::class)->searchable(),
+            MorphToMany::make($userResource::label(), 'users', $userResource)->searchable(),
         ];
     }
 
