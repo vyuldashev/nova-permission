@@ -2,7 +2,6 @@
 
 namespace Vyuldashev\NovaPermission;
 
-use Laravel\Nova\Fields\MorphToMany;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Resource;
 use Laravel\Nova\Fields\ID;
@@ -11,6 +10,7 @@ use Laravel\Nova\Fields\Text;
 use Illuminate\Validation\Rule;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\MorphToMany;
 use Laravel\Nova\Fields\BelongsToMany;
 use Spatie\Permission\PermissionRegistrar;
 
