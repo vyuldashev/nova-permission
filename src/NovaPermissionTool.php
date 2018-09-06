@@ -2,6 +2,7 @@
 
 namespace Vyuldashev\NovaPermission;
 
+use Auth;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Tool;
 
@@ -23,10 +24,16 @@ class NovaPermissionTool extends Tool
     /**
      * Build the view that renders the navigation links for the tool.
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\View\View|string
      */
     public function renderNavigation()
     {
+        if ($tool = config('permission.nova.tool_role')) {
+            return Auth::user()->hasRole($tool)
+                ? view('nova-permission-tool::navigation')
+                : '';
+        }
+
         return view('nova-permission-tool::navigation');
     }
 }
