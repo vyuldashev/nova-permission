@@ -27,8 +27,10 @@ class ToolServiceProvider extends ServiceProvider
             $this->routes();
         });
 
-        Gate::policy(config('permission.models.permission'), PermissionPolicy::class);
-        Gate::policy(config('permission.models.role'), RolePolicy::class);
+        Gate::policy(config('permission.models.permission'),
+            config('permission.nova.policies.permission', PermissionPolicy::class));
+        Gate::policy(config('permission.models.role'),
+            config('permission.nova.policies.role', RolePolicy::class));
 
         Nova::serving(function (ServingNova $event) {
             //
