@@ -28,7 +28,7 @@ public function tools()
 {
     return [
         // ...
-        new \Vyuldashev\NovaPermission\NovaPermissionTool(),
+        \Vyuldashev\NovaPermission\NovaPermissionTool::make(),
     ];
 }
 ```
@@ -45,6 +45,26 @@ public function fields(Request $request)
         // ...
         MorphToMany::make('Roles', 'roles', \Vyuldashev\NovaPermission\Role::class),
         MorphToMany::make('Permissions', 'permissions', \Vyuldashev\NovaPermission\Permission::class),
+    ];
+}
+```
+
+## Customization
+
+If you want to use custom resource classes you can define them when you register a tool:
+
+```php
+// in app/Providers/NovaServiceProvider.php
+
+// ...
+
+public function tools()
+{
+    return [
+        // ...
+        \Vyuldashev\NovaPermission\NovaPermissionTool::make()
+            ->roleResource(CustomRole::class)
+            ->permissionResource(CustomPermission::class),
     ];
 }
 ```
