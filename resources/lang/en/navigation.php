@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'sidebar-label' => 'Roles & Permissions',
+    'sidebar-label' => 'Authorizations',
 ];
