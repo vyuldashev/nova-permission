@@ -85,8 +85,12 @@ class Role extends Resource
             DateTime::make(__('nova-permission-tool::roles.created_at'), 'created_at')->exceptOnForms(),
             DateTime::make(__('nova-permission-tool::roles.updated_at'), 'updated_at')->exceptOnForms(),
 
-            BelongsToMany::make(__('nova-permission-tool::resources.Permissions'), 'permissions', Permission::class)->searchable(),
-            MorphToMany::make($userResource::label(), 'users', $userResource)->searchable(),
+            BelongsToMany::make(Permission::label(), 'permissions', Permission::class)
+                ->searchable()
+                ->singularLabel(Permission::singularLabel()),
+            MorphToMany::make($userResource::label(), 'users', $userResource)
+                ->searchable()
+                ->singularLabel($userResource::singularLabel()),
         ];
     }
 
