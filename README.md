@@ -33,6 +33,16 @@ public function tools()
 }
 ```
 
+Next, add middleware to `config/nova.php`
+
+```php
+// in config/nova.php
+'middleware' => [
+    // ...
+    \Vyuldashev\NovaPermission\ForgetCachedPermissions::class,
+],
+```
+
 Finally, add `MorphToMany` fields to you `app/Nova/User` resource:
 
 ```php
