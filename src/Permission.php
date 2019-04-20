@@ -141,6 +141,8 @@ class Permission extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [
+            new AttachToRole,
+        ];
     }
 }
