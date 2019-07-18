@@ -23,6 +23,10 @@ class ToolServiceProvider extends ServiceProvider
             __DIR__.'/../resources/lang' => resource_path('lang/vendor/nova-permission-tool'),
         ], 'nova-permission-tool-lang');
 
+        $this->publishes([
+            __DIR__.'/../resources/views' => resource_path('views/vendor/nova-permission-tool'),
+        ], 'nova-permission-tool-views');
+
         $this->app->booted(function () {
             $this->routes();
         });
