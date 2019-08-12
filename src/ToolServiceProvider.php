@@ -16,16 +16,20 @@ class ToolServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'nova-permission-tool');
-        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'nova-permission-tool');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'nova-permission-tool');
+        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'nova-permission-tool');
 
         $this->publishes([
-            __DIR__.'/../resources/lang' => resource_path('lang/vendor/nova-permission-tool'),
+            __DIR__ . '/../resources/lang' => resource_path('lang/vendor/nova-permission-tool'),
         ], 'nova-permission-tool-lang');
 
         $this->publishes([
-            __DIR__.'/../resources/views' => resource_path('views/vendor/nova-permission-tool'),
+            __DIR__ . '/../resources/views' => resource_path('views/vendor/nova-permission-tool'),
         ], 'nova-permission-tool-views');
+
+        $this->publishes([
+            __DIR__ . '/config/nova_permission.php' => config_path('nova_permission.php'),
+        ], 'nova-permission');
 
         $this->app->booted(function () {
             $this->routes();
@@ -60,6 +64,9 @@ class ToolServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->mergeConfigFrom(
+            __DIR__ . '/config/nova_permission.php',
+            'nova_permission'
+        );
     }
 }
