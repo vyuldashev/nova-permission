@@ -1,31 +1,35 @@
 {
-  "name": "vyuldashev/nova-permission",
-  "description": "A Laravel Nova tool for Spatie's Permission library.",
-  "keywords": [
-    "laravel",
-    "nova",
-    "spatie-permission"
-  ],
-  "license": "MIT",
-  "require": {
-    "php": "^7.1",
-    "spatie/laravel-permission": "^2.16"
-  },
-  "autoload": {
-    "psr-4": {
-      "Vyuldashev\\NovaPermission\\": "src/"
-    }
-  },
-  "extra": {
-    "laravel": {
-      "providers": [
-        "Vyuldashev\\NovaPermission\\ToolServiceProvider"
-      ]
-    }
-  },
-  "config": {
-    "sort-packages": true
-  },
-  "minimum-stability": "dev",
-  "prefer-stable": true
+    "name": "dytechltd/nova-permission",
+    "description": "A Laravel Nova tool for Spatie's Permission library.",
+    "keywords": [
+        "laravel",
+        "nova",
+        "spatie-permission"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^7.1",
+        "spatie/laravel-permission": "^2.16"
+    },
+    "autoload": {
+        "psr-4": {
+            "Vyuldashev\\NovaPermission\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Vyuldashev\\NovaPermission\\ToolServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "repositories": [{
+        "type": "vcs",
+        "url": "https://github.com/dytechltd/nova-permission.git"
+    }]
 }
