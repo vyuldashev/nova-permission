@@ -26,10 +26,15 @@
     "config": {
         "sort-packages": true
     },
-    "minimum-stability": "2.0.0",
+    "minimum-stability": "stable",
     "prefer-stable": true,
     "repositories": [{
-        "type": "vcs",
-        "url": "https://github.com/dytechltd/nova-permission.git"
+        "type": "package",
+	"version": "0.1.4", 
+            "source": { 
+            	"url": "https://github.com/dytechltd/nova-permission.git",
+                "type": "git", 
+                "reference": "master" 
+         }
     }]
 }
