@@ -30,7 +30,7 @@
     "prefer-stable": true,
     "repositories": [{
         "type": "package",
-	"version": "0.1.4", 
+	"version": "2.0.0", 
             "source": { 
             	"url": "https://github.com/dytechltd/nova-permission.git",
                 "type": "git", 
