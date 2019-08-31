@@ -90,6 +90,7 @@ class Role extends Resource
             BelongsToMany::make($permissionResource::label(), 'permissions', $permissionResource)
                 ->searchable()
                 ->singularLabel($permissionResource::singularLabel()),
+            
             MorphToMany::make($userResource::label(), 'users', $userResource)
                 ->searchable()
                 ->singularLabel($userResource::singularLabel()),
