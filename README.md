@@ -75,6 +75,8 @@ public function fields(Request $request)
         BooleanGroup::make('Permissions')->options(
             \Spatie\Permission\Models\Permission::get()->pluck('name', 'id')->toArray()
         ),
+    ];
+}
 ```
 
 ## Customization
