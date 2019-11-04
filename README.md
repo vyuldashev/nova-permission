@@ -59,6 +59,24 @@ public function fields(Request $request)
 }
 ```
 
+Or if you want to attach multiple permissions at once, use `BooleanGroup` field (requires at least Nova 2.6.0):
+
+```php
+// ...
+use Laravel\Nova\Fields\MorphToMany;
+
+public function fields(Request $request)
+{
+    return [
+        // ...
+        BooleanGroup::make('Roles')->options(
+            \Spatie\Permission\Models\Role::get()->pluck('name', 'id')->toArray()
+        ),
+        BooleanGroup::make('Permissions')->options(
+            \Spatie\Permission\Models\Permission::get()->pluck('name', 'id')->toArray()
+        ),
+```
+
 ## Customization
 
 If you want to use custom resource classes you can define them when you register a tool:
