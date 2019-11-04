@@ -2,6 +2,7 @@
 
 namespace Vyuldashev\NovaPermission;
 
+use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Resource;
 use Laravel\Nova\Fields\ID;
@@ -39,11 +40,30 @@ class Permission extends Resource
         'name',
     ];
 
-    public static $displayInNavigation = false;
-
     public static function getModel()
     {
         return app(PermissionRegistrar::class)->getPermissionClass();
+    }
+
+    /**
+     * Get the logical group associated with the resource.
+     *
+     * @return string
+     */
+    public static function group()
+    {
+        return __('nova-permission-tool::navigation.sidebar-label');
+    }
+
+    /**
+     * Determine if this resource is available for navigation.
+     *
+     * @param Request $request
+     * @return bool
+     */
+    public static function availableForNavigation(Request $request)
+    {
+        return Gate::allows('viewAny', app(PermissionRegistrar::class)->getPermissionClass());
     }
 
     public static function label()
@@ -59,7 +79,7 @@ class Permission extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param Request $request
      * @return array
      */
     public function fields(Request $request)
@@ -104,7 +124,7 @@ class Permission extends Resource
     /**
      * Get the cards available for the request.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param Request $request
      * @return array
      */
     public function cards(Request $request)
@@ -115,7 +135,7 @@ class Permission extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param Request $request
      * @return array
      */
     public function filters(Request $request)
@@ -126,7 +146,7 @@ class Permission extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param Request $request
      * @return array
      */
     public function lenses(Request $request)
@@ -137,7 +157,7 @@ class Permission extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param Request $request
      * @return array
      */
     public function actions(Request $request)

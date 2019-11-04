@@ -2,6 +2,7 @@
 
 namespace Vyuldashev\NovaPermission;
 
+use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Resource;
 use Laravel\Nova\Fields\ID;
@@ -39,11 +40,30 @@ class Role extends Resource
         'name',
     ];
 
-    public static $displayInNavigation = false;
-
     public static function getModel()
     {
         return app(PermissionRegistrar::class)->getRoleClass();
+    }
+
+    /**
+     * Get the logical group associated with the resource.
+     *
+     * @return string
+     */
+    public static function group()
+    {
+        return __('nova-permission-tool::navigation.sidebar-label');
+    }
+
+    /**
+     * Determine if this resource is available for navigation.
+     *
+     * @param Request $request
+     * @return bool
+     */
+    public static function availableForNavigation(Request $request)
+    {
+        return Gate::allows('viewAny', app(PermissionRegistrar::class)->getRoleClass());
     }
 
     public static function label()
@@ -59,7 +79,7 @@ class Role extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param Request $request
      * @return array
      */
     public function fields(Request $request)
@@ -70,7 +90,6 @@ class Role extends Resource
 
         $userResource = Nova::resourceForModel(getModelForGuard($this->guard_name));
         $permissionResource = Nova::resourceForModel(Permission::getModel());
-
 
         return [
             ID::make()->sortable(),
@@ -90,7 +109,7 @@ class Role extends Resource
             BelongsToMany::make($permissionResource::label(), 'permissions', $permissionResource)
                 ->searchable()
                 ->singularLabel($permissionResource::singularLabel()),
-            
+
             MorphToMany::make($userResource::label(), 'users', $userResource)
                 ->searchable()
                 ->singularLabel($userResource::singularLabel()),
@@ -100,7 +119,7 @@ class Role extends Resource
     /**
      * Get the cards available for the request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return array
      */
     public function cards(Request $request)
@@ -111,7 +130,7 @@ class Role extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return array
      */
     public function filters(Request $request)
@@ -122,7 +141,7 @@ class Role extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return array
      */
     public function lenses(Request $request)
@@ -133,7 +152,7 @@ class Role extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return array
      */
     public function actions(Request $request)
