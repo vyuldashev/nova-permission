@@ -39,7 +39,7 @@ class AttachToRole extends Action
     public function fields()
     {
         return [
-            Select::make('Role')->options(Role::getModel()->get()->pluck('name','id'))->displayUsingLabels()
+            Select::make('Role')->options(Role::getModel()->get()->pluck('name','id')->toArray())->displayUsingLabels()
         ];
     }
 }
