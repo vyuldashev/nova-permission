@@ -59,22 +59,19 @@ public function fields(Request $request)
 }
 ```
 
-Or if you want to attach multiple permissions at once, use `BooleanGroup` field (requires at least Nova 2.6.0):
+Or if you want to attach multiple permissions at once, use `RoleBooleanGroup` and `PermissionBooleanGroup` fields (requires at least Nova 2.6.0):
 
 ```php
 // ...
-use Laravel\Nova\Fields\MorphToMany;
+use Vyuldashev\NovaPermission\PermissionBooleanGroup;
+use Vyuldashev\NovaPermission\RoleBooleanGroup;
 
 public function fields(Request $request)
 {
     return [
         // ...
-        BooleanGroup::make('Roles')->options(
-            \Spatie\Permission\Models\Role::get()->pluck('name', 'id')->toArray()
-        ),
-        BooleanGroup::make('Permissions')->options(
-            \Spatie\Permission\Models\Permission::get()->pluck('name', 'id')->toArray()
-        ),
+        RoleBooleanGroup::make('Roles'),
+        PermissionBooleanGroup::make('Permissions'),
     ];
 }
 ```
