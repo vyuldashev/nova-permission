@@ -4,8 +4,6 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/vyuldashev/nova-permission.svg?style=flat-square)](https://packagist.org/packages/vyuldashev/nova-permission)
 
 ![screenshot 1](https://raw.githubusercontent.com/vyuldashev/nova-permission/master/docs/user-resource.png)
-![screenshot 2](https://raw.githubusercontent.com/vyuldashev/nova-permission/master/docs/roles-resource.png)
-![screenshot 3](https://raw.githubusercontent.com/vyuldashev/nova-permission/master/docs/permissions-resource.png)
 
 ## Installation
 
