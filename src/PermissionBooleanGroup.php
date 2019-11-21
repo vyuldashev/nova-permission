@@ -26,7 +26,7 @@ class PermissionBooleanGroup extends BooleanGroup
         $this->options(static function () {
             $permissionClass = app(PermissionRegistrar::class)->getPermissionClass();
 
-            return $permissionClass::get()->flatMap(function ($permission) {
+            return $permissionClass::get()->flatMap(function($permission) {
                 $display_name = is_array(__('nova-permission-tool::permissions.display_names'))
                   ? __('nova-permission-tool::permissions.display_names.'.$permission->name)
                   : $permission->name;
