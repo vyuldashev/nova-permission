@@ -38,7 +38,7 @@ class PermissionBooleanGroup extends BooleanGroup
      */
     protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)
     {
-        if (!$request->exists($requestAttribute)) {
+        if (! $request->exists($requestAttribute)) {
             return;
         }
 
