@@ -17,17 +17,17 @@ class PermissionBooleanGroup extends BooleanGroup
             $name,
             $attribute,
             $resolveCallback ?? static function (Collection $permissions) {
-                return $permissions->mapWithKeys(function(PermissionModel $permission) {
+                return $permissions->mapWithKeys(function (PermissionModel $permission) {
                     return [$permission->name => true];
                 });
             }
         );
 
-        $this->options(static function () {
-            $permissionClass = app(PermissionRegistrar::class)->getPermissionClass();
+        $permissionClass = app(PermissionRegistrar::class)->getPermissionClass();
 
-            return $permissionClass::get()->pluck('name', 'name')->toArray();
-        });
+        $options = $permissionClass::get()->pluck('name', 'name')->toArray();
+
+        $this->options($options);
     }
 
     /**
