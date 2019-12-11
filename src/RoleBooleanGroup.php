@@ -23,11 +23,11 @@ class RoleBooleanGroup extends BooleanGroup
             }
         );
 
-        $this->options(static function () {
-            $roleClass = app(PermissionRegistrar::class)->getRoleClass();
+        $roleClass = app(PermissionRegistrar::class)->getRoleClass();
 
-            return $roleClass::get()->pluck('name', 'name')->toArray();
-        });
+        $options = $roleClass::get()->pluck('name', 'name')->toArray();
+
+        $this->options($options);
     }
 
     /**
