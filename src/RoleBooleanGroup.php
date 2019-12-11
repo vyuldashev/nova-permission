@@ -17,7 +17,7 @@ class RoleBooleanGroup extends BooleanGroup
             $name,
             $attribute,
             $resolveCallback ?? static function (Collection $permissions) {
-                return $permissions->mapWithKeys(function(RoleModel $role) {
+                return $permissions->mapWithKeys(function (RoleModel $role) {
                     return [$role->name => true];
                 });
             }
@@ -38,7 +38,7 @@ class RoleBooleanGroup extends BooleanGroup
      */
     protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)
     {
-        if (!$request->exists($requestAttribute)) {
+        if (! $request->exists($requestAttribute)) {
             return;
         }
 
