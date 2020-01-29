@@ -92,6 +92,28 @@ public function tools()
             ->permissionResource(CustomPermission::class),
     ];
 }
+
+```
+
+
+## Define own Policies 
+
+```php
+php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+```
+
+inside config/permission.php
+
+add the following after models
+
+```php
+'policy' => [
+
+        'permission' => App\Policies\PermissionPolicy::class,
+
+        'role' => App\Policies\RolePolicy::class,
+
+    ],
 ```
 
 ## Usage
