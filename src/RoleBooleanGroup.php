@@ -42,13 +42,17 @@ class RoleBooleanGroup extends BooleanGroup
             return;
         }
 
-        $values = collect(json_decode($request[$requestAttribute], true))
+        $model->roles()->detach();
+
+        collect(json_decode($request[$requestAttribute], true))
             ->filter(static function (bool $value) {
                 return $value;
             })
             ->keys()
-            ->toArray();
-
-        $model->syncRoles($values);
+            ->map(static function ($roleName) use ($model){
+                $role = RoleModel::where('name', $roleName)->first();
+                $model->assignRole($role);
+                return $roleName;
+            });
     }
 }
