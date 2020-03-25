@@ -49,7 +49,7 @@ class RoleBooleanGroup extends BooleanGroup
                 return $value;
             })
             ->keys()
-            ->map(static function ($roleName) use ($model){
+            ->map(static function ($roleName) use ($model) {
                 $role = RoleModel::where('name', $roleName)->first();
                 $model->assignRole($role);
                 return $roleName;
