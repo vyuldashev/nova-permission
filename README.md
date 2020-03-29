@@ -96,24 +96,23 @@ public function tools()
 ```
 
 
-## Define own Policies 
+## Define Policies 
 
 ```php
-php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
-```
+// in app/Providers/NovaServiceProvider.php
 
-inside config/permission.php
+// ...
 
-add the following after models
+public function tools()
+{
+    return [
+        // ...
+        \Vyuldashev\NovaPermission\NovaPermissionTool::make()
+            ->rolePolicy(RolePolicy::class)
+            ->permissionPolicy(PermissionPolicy::class),
+    ];
+}
 
-```php
-'policy' => [
-
-        'permission' => App\Policies\PermissionPolicy::class,
-
-        'role' => App\Policies\RolePolicy::class,
-
-    ],
 ```
 
 ## Usage
