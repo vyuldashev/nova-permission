@@ -2,7 +2,6 @@
 
 namespace Vyuldashev\NovaPermission;
 
-use Gate;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Nova\Events\ServingNova;
 use Laravel\Nova\Nova;
@@ -25,9 +24,6 @@ class ToolServiceProvider extends ServiceProvider
         $this->app->booted(function () {
             $this->routes();
         });
-
-        Gate::policy(config('permission.models.permission'), PermissionPolicy::class);
-        Gate::policy(config('permission.models.role'), RolePolicy::class);
 
         Nova::serving(function (ServingNova $event) {
             //

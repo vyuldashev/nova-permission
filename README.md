@@ -92,6 +92,27 @@ public function tools()
             ->permissionResource(CustomPermission::class),
     ];
 }
+
+```
+
+
+## Define Policies 
+
+```php
+// in app/Providers/NovaServiceProvider.php
+
+// ...
+
+public function tools()
+{
+    return [
+        // ...
+        \Vyuldashev\NovaPermission\NovaPermissionTool::make()
+            ->rolePolicy(RolePolicy::class)
+            ->permissionPolicy(PermissionPolicy::class),
+    ];
+}
+
 ```
 
 ## Usage
