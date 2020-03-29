@@ -10,7 +10,7 @@ class NovaPermissionTool extends Tool
 {
     public $roleResource = Role::class;
     public $permissionResource = Permission::class;
-    
+
     public $rolePolicy = RolePolicy::class;
     public $permissionPolicy = PermissionPolicy::class;
 
@@ -25,7 +25,7 @@ class NovaPermissionTool extends Tool
             $this->roleResource,
             $this->permissionResource,
         ]);
-        
+
         Gate::policy(config('permission.models.permission'), $this->permissionPolicy);
         Gate::policy(config('permission.models.role'), $this->rolePolicy);
     }
@@ -43,7 +43,7 @@ class NovaPermissionTool extends Tool
 
         return $this;
     }
-    
+
     public function rolePolicy(string $rolePolicy)
     {
         $this->rolePolicy = $rolePolicy;
@@ -53,7 +53,6 @@ class NovaPermissionTool extends Tool
 
     public function permissionPolicy(string $permissionPolicy)
     {
-
         $this->permissionPolicy = $permissionPolicy;
 
         return $this;
