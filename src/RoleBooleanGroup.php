@@ -53,6 +53,7 @@ class RoleBooleanGroup extends BooleanGroup
                 $roleClass = app(PermissionRegistrar::class)->getRoleClass();
                 $role = $roleClass::where('name', $roleName)->first();
                 $model->assignRole($role);
+
                 return $roleName;
             });
     }
