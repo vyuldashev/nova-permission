@@ -42,13 +42,19 @@ class RoleBooleanGroup extends BooleanGroup
             return;
         }
 
-        $values = collect(json_decode($request[$requestAttribute], true))
+        $model->roles()->detach();
+
+        collect(json_decode($request[$requestAttribute], true))
             ->filter(static function (bool $value) {
                 return $value;
             })
             ->keys()
-            ->toArray();
+            ->map(static function ($roleName) use ($model) {
+                $roleClass = app(PermissionRegistrar::class)->getRoleClass();
+                $role = $roleClass::where('name', $roleName)->first();
+                $model->assignRole($role);
 
-        $model->syncRoles($values);
+                return $roleName;
+            });
     }
 }
