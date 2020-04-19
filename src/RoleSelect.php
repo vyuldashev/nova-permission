@@ -42,15 +42,11 @@ class RoleSelect extends Select
 
         $model->roles()->detach();
 
-        collect([$request[$requestAttribute]])
-            ->filter(function ($value) {
-                return !is_null($value);
-            })
-            ->each(function ($roleName) use ($model) {
-                $roleClass = app(PermissionRegistrar::class)->getRoleClass();
-                $role = $roleClass::where('name', $roleName)->first();
-                $model->assignRole($role);
-            });
+        if (!is_null($request[$requestAttribute])) {
+            $roleClass = app(PermissionRegistrar::class)->getRoleClass();
+            $role = $roleClass::where('name', $request[$requestAttribute])->first();
+            $model->assignRole($role);
+        }
     }
 
     /**
@@ -62,8 +58,8 @@ class RoleSelect extends Select
     {
         return $this->displayUsing(function ($value) {
             return collect($this->meta['options'])
-                    ->where('value', optional($value->first())->name)
-                    ->first()['label'] ?? optional($value->first())->name;
+                ->where('value', optional($value->first())->name)
+                ->first()['label'] ?? optional($value->first())->name;
         });
     }
 }
