@@ -5,7 +5,6 @@ namespace Vyuldashev\NovaPermission;
 use Illuminate\Support\Collection;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Spatie\Permission\Models\Permission as PermissionModel;
 use Spatie\Permission\PermissionRegistrar;
 use Spatie\Permission\Traits\HasPermissions;
 
@@ -42,7 +41,7 @@ class RoleSelect extends Select
 
         $model->roles()->detach();
 
-        if (!is_null($request[$requestAttribute])) {
+        if (! is_null($request[$requestAttribute])) {
             $roleClass = app(PermissionRegistrar::class)->getRoleClass();
             $role = $roleClass::where('name', $request[$requestAttribute])->first();
             $model->assignRole($role);
