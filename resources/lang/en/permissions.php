@@ -6,4 +6,5 @@ return [
     'guard_name' => 'Guard Name',
     'created_at' => 'Created at',
     'updated_at' => 'Updated at',
+    'roles' => 'Roles',
 ];
