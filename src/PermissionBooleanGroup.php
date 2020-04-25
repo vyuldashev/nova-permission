@@ -11,7 +11,7 @@ use Spatie\Permission\Traits\HasPermissions;
 
 class PermissionBooleanGroup extends BooleanGroup
 {
-    public function __construct($name, $attribute = null, $labelAttribute = null, callable $resolveCallback = null)
+    public function __construct($name, $attribute = null, callable $resolveCallback = null, $labelAttribute = null)
     {
         parent::__construct(
             $name,
