@@ -11,7 +11,7 @@ use Spatie\Permission\Traits\HasPermissions;
 
 class PermissionBooleanGroup extends BooleanGroup
 {
-    public function __construct($name, $attribute = null, callable $resolveCallback = null)
+    public function __construct($name, $attribute = null, callable $resolveCallback = null, $labelAttribute = null)
     {
         parent::__construct(
             $name,
@@ -25,7 +25,7 @@ class PermissionBooleanGroup extends BooleanGroup
 
         $permissionClass = app(PermissionRegistrar::class)->getPermissionClass();
 
-        $options = $permissionClass::get()->pluck('name', 'name')->toArray();
+        $options = $permissionClass::get()->pluck($labelAttribute ?? 'name', 'name')->toArray();
 
         $this->options($options);
     }

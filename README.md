@@ -74,6 +74,22 @@ public function fields(Request $request)
 }
 ```
 
+If your `User` could have a single role at any given time, you can use `RoleSelect` field. This field will render a standard select where you can pick a single role from.
+
+```php
+// ...
+use Vyuldashev\NovaPermission\PermissionBooleanGroup;
+use Vyuldashev\NovaPermission\RoleSelect;
+
+public function fields(Request $request)
+{
+    return [
+        // ...
+        RoleSelect::make('Role', 'roles'),
+    ];
+}
+```
+
 ## Customization
 
 If you want to use custom resource classes you can define them when you register a tool:
@@ -93,6 +109,24 @@ public function tools()
     ];
 }
 
+```
+
+If you want to show your roles and policies with a custom label, you can set `$labelAttribute` when instantiating your fields:
+
+```php
+// ...
+use Vyuldashev\NovaPermission\PermissionBooleanGroup;
+use Vyuldashev\NovaPermission\RoleSelect;
+
+public function fields(Request $request)
+{
+    return [
+        // ...
+        RoleBooleanGroup::make('Roles', 'roles', null, 'description'),
+        PermissionBooleanGroup::make('Permissions', 'permissions', null, 'description'),
+        RoleSelect::make('Role', 'roles', null, 'description'),
+    ];
+}
 ```
 
 

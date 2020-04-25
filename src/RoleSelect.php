@@ -3,23 +3,20 @@
 namespace Vyuldashev\NovaPermission;
 
 use Illuminate\Support\Collection;
-use Laravel\Nova\Fields\BooleanGroup;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Spatie\Permission\Models\Role as RoleModel;
 use Spatie\Permission\PermissionRegistrar;
 use Spatie\Permission\Traits\HasPermissions;
 
-class RoleBooleanGroup extends BooleanGroup
+class RoleSelect extends Select
 {
     public function __construct($name, $attribute = null, callable $resolveCallback = null, $labelAttribute = null)
     {
         parent::__construct(
             $name,
             $attribute,
-            $resolveCallback ?? static function (Collection $permissions) {
-                return $permissions->mapWithKeys(function (RoleModel $role) {
-                    return [$role->name => true];
-                });
+            $resolveCallback ?? static function (Collection $roles) {
+                return optional($roles->first())->name;
             }
         );
 
@@ -44,17 +41,24 @@ class RoleBooleanGroup extends BooleanGroup
 
         $model->roles()->detach();
 
-        collect(json_decode($request[$requestAttribute], true))
-            ->filter(static function (bool $value) {
-                return $value;
-            })
-            ->keys()
-            ->map(static function ($roleName) use ($model) {
-                $roleClass = app(PermissionRegistrar::class)->getRoleClass();
-                $role = $roleClass::where('name', $roleName)->first();
-                $model->assignRole($role);
+        if (! is_null($request[$requestAttribute])) {
+            $roleClass = app(PermissionRegistrar::class)->getRoleClass();
+            $role = $roleClass::where('name', $request[$requestAttribute])->first();
+            $model->assignRole($role);
+        }
+    }
 
-                return $roleName;
-            });
+    /**
+     * Display values using their corresponding specified labels.
+     *
+     * @return $this
+     */
+    public function displayUsingLabels()
+    {
+        return $this->displayUsing(function ($value) {
+            return collect($this->meta['options'])
+                ->where('value', optional($value->first())->name)
+                ->first()['label'] ?? optional($value->first())->name;
+        });
     }
 }
