@@ -8,6 +8,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 use Spatie\Permission\Models\Permission as PermissionModel;
 use Spatie\Permission\PermissionRegistrar;
 use Spatie\Permission\Traits\HasPermissions;
+use Auth;
 
 class PermissionBooleanGroup extends BooleanGroup
 {
@@ -25,7 +26,10 @@ class PermissionBooleanGroup extends BooleanGroup
 
         $permissionClass = app(PermissionRegistrar::class)->getPermissionClass();
 
-        $options = $permissionClass::get()->pluck($labelAttribute ?? 'name', 'name')->toArray();
+        $options = $permissionClass::get()->pluck($labelAttribute ?? 'name', 'name')->map(function ($permission) {
+            if(Auth::user()->can('view', PermissionModel::where('name', $permission)->first()))
+                return $permission;
+        })->whereNotNull()->toArray();
 
         $this->options($options);
     }
