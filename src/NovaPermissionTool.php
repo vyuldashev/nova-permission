@@ -26,6 +26,9 @@ class NovaPermissionTool extends Tool
             $this->permissionResource,
         ]);
 
+        ($this->permissionResource)::$model = config('permission.models.permission');
+        ($this->roleResource)::$model = config('permission.models.role');
+
         Gate::policy(config('permission.models.permission'), $this->permissionPolicy);
         Gate::policy(config('permission.models.role'), $this->rolePolicy);
     }

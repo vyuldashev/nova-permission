@@ -21,7 +21,7 @@ class Permission extends Resource
      *
      * @var string
      */
-    public static $model = \Spatie\Permission\Models\Permission::class;
+    public static $model = '';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
