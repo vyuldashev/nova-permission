@@ -2,13 +2,13 @@
 
 namespace Vyuldashev\NovaPermission;
 
+use Auth;
 use Illuminate\Support\Collection;
 use Laravel\Nova\Fields\BooleanGroup;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Spatie\Permission\Models\Role as RoleModel;
 use Spatie\Permission\PermissionRegistrar;
 use Spatie\Permission\Traits\HasPermissions;
-use Auth;
 
 class RoleBooleanGroup extends BooleanGroup
 {
@@ -26,10 +26,9 @@ class RoleBooleanGroup extends BooleanGroup
 
         $roleClass = app(PermissionRegistrar::class)->getRoleClass();
 
-        $options = $roleClass::get()->pluck($labelAttribute ?? 'name', 'name')->map(function ($role) {
-            if(Auth::user()->can('view', RoleModel::where('name', $role)->first()))
-                return $role;
-        })->whereNotNull()->toArray();
+        $options = $roleClass::get()->pluck($labelAttribute ?? 'name', 'name')->filter(function ($role) {
+            return Auth::user()->can('view', RoleModel::where('name', $role)->first());
+        })->toArray();
 
         $this->options($options);
     }
