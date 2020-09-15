@@ -6,6 +6,7 @@ namespace Vyuldashev\NovaPermission;
 
 use Laravel\Nova\Nova;
 use Spatie\Permission\PermissionRegistrar;
+use Illuminate\Support\Str;
 
 class ForgetCachedPermissions
 {
@@ -25,7 +26,7 @@ class ForgetCachedPermissions
             $request->is('nova-api/*/detach') ||
             $request->is('nova-api/*/*/attach*/*')
         ) {
-            $permissionKey = Nova::resourceForModel(app(PermissionRegistrar::class)->getPermissionClass())::uriKey();
+            $permissionKey = Str::plural(Str::kebab(class_basename(app(PermissionRegistrar::class)->getPermissionClass())));
 
             if ($request->viaRelationship === $permissionKey) {
                 app(PermissionRegistrar::class)->forgetCachedPermissions();
