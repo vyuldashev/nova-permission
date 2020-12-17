@@ -25,8 +25,13 @@ class PermissionBooleanGroup extends BooleanGroup
 
         $permissionClass = app(PermissionRegistrar::class)->getPermissionClass();
 
-        $options = $permissionClass::get()->pluck($labelAttribute ?? 'name', 'name')->toArray();
+ $options = $permissionClass::get()->pluck($labelAttribute ?? 'name', 'name')->mapWithKeys(function ($permissionName)
+        {
+            $translation = ! empty(__('nova-permission-tool::permissions.display_names.'.$permissionName)) ? __('nova-permission-tool::permissions.display_names.'.$permissionName) : $permissionName;
 
+            return [$permissionName => $translation];
+        })->toArray(); 
+        
         $this->options($options);
     }
 
