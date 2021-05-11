@@ -8,11 +8,11 @@ use Laravel\Nova\Tool;
 
 class NovaPermissionTool extends Tool
 {
-    public $roleResource = Role::class;
-    public $permissionResource = Permission::class;
+    public string $roleResource = Role::class;
+    public string $permissionResource = Permission::class;
 
-    public $rolePolicy = RolePolicy::class;
-    public $permissionPolicy = PermissionPolicy::class;
+    public string $rolePolicy = RolePolicy::class;
+    public string $permissionPolicy = PermissionPolicy::class;
 
     /**
      * Perform any tasks that need to happen when the tool is booted.
@@ -30,21 +30,21 @@ class NovaPermissionTool extends Tool
         Gate::policy(config('permission.models.role'), $this->rolePolicy);
     }
 
-    public function roleResource(string $roleResource)
+    public function roleResource(string $roleResource): NovaPermissionTool
     {
         $this->roleResource = $roleResource;
 
         return $this;
     }
 
-    public function permissionResource(string $permissionResource)
+    public function permissionResource(string $permissionResource): NovaPermissionTool
     {
         $this->permissionResource = $permissionResource;
 
         return $this;
     }
 
-    public function rolePolicy(string $rolePolicy)
+    public function rolePolicy(string $rolePolicy): NovaPermissionTool
     {
         $this->rolePolicy = $rolePolicy;
 

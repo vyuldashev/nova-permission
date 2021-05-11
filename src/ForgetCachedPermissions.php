@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Vyuldashev\NovaPermission;
 
+use Illuminate\Http\Request;
 use Laravel\Nova\Nova;
 use Spatie\Permission\PermissionRegistrar;
 use Illuminate\Support\Str;
@@ -13,7 +14,7 @@ class ForgetCachedPermissions
     /**
      * Handle the incoming request.
      *
-     * @param \Illuminate\Http\Request|mixed $request
+     * @param Request|mixed $request
      * @param \Closure $next
      *
      * @return mixed
