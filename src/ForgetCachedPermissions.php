@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Vyuldashev\NovaPermission;
 
-use Illuminate\Http\Request;
 use Laravel\Nova\Nova;
 use Spatie\Permission\PermissionRegistrar;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 
 class ForgetCachedPermissions
 {
