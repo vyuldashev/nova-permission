@@ -33,7 +33,7 @@ class RoleSelect extends Select
      * @param HasPermissions $model
      * @param string $attribute
      */
-    protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)
+    protected function fillAttributeFromRequest(NovaRequest $request, string $requestAttribute, HasPermissions $model, string $attribute)
     {
         if (! $request->exists($requestAttribute)) {
             return;
@@ -53,7 +53,7 @@ class RoleSelect extends Select
      *
      * @return $this
      */
-    public function displayUsingLabels()
+    public function displayUsingLabels(): RoleSelect
     {
         return $this->displayUsing(function ($value) {
             return collect($this->meta['options'])

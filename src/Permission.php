@@ -21,21 +21,21 @@ class Permission extends Resource
      *
      * @var string
      */
-    public static $model = \Spatie\Permission\Models\Permission::class;
+    public static string $model = \Spatie\Permission\Models\Permission::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'name';
+    public static string $title = 'name';
 
     /**
      * The columns that should be searched.
      *
      * @var array
      */
-    public static $search = [
+    public static array $search = [
         'name',
     ];
 
@@ -49,7 +49,7 @@ class Permission extends Resource
      *
      * @return string
      */
-    public static function group()
+    public static function group(): string
     {
         return __('nova-permission-tool::navigation.sidebar-label');
     }
@@ -60,7 +60,7 @@ class Permission extends Resource
      * @param Request $request
      * @return bool
      */
-    public static function availableForNavigation(Request $request)
+    public static function availableForNavigation(Request $request): bool
     {
         return Gate::allows('viewAny', app(PermissionRegistrar::class)->getPermissionClass());
     }
@@ -81,7 +81,7 @@ class Permission extends Resource
      * @param Request $request
      * @return array
      */
-    public function fields(Request $request)
+    public function fields(Request $request): array
     {
         $guardOptions = collect(config('auth.guards'))->mapWithKeys(function ($value, $key) {
             return [$key => $key];
@@ -124,7 +124,7 @@ class Permission extends Resource
      * @param Request $request
      * @return array
      */
-    public function cards(Request $request)
+    public function cards(Request $request): array
     {
         return [];
     }
@@ -135,7 +135,7 @@ class Permission extends Resource
      * @param Request $request
      * @return array
      */
-    public function filters(Request $request)
+    public function filters(Request $request): array
     {
         return [];
     }
@@ -146,7 +146,7 @@ class Permission extends Resource
      * @param Request $request
      * @return array
      */
-    public function lenses(Request $request)
+    public function lenses(Request $request): array
     {
         return [];
     }
@@ -157,7 +157,7 @@ class Permission extends Resource
      * @param Request $request
      * @return array
      */
-    public function actions(Request $request)
+    public function actions(Request $request): array
     {
         return [
             new AttachToRole,
