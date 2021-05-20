@@ -28,14 +28,14 @@ class Permission extends Resource
      *
      * @var string
      */
-    public static string $title = 'name';
+    public static $title = 'name';
 
     /**
      * The columns that should be searched.
      *
      * @var array
      */
-    public static array $search = [
+    public static $search = [
         'name',
     ];
 
