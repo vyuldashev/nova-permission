@@ -33,7 +33,7 @@ class RoleSelect extends Select
      * @param HasPermissions $model
      * @param string $attribute
      */
-    protected function fillAttributeFromRequest(NovaRequest $request, string $requestAttribute, HasPermissions $model, string $attribute)
+    protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)
     {
         if (! $request->exists($requestAttribute)) {
             return;
