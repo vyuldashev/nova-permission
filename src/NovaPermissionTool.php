@@ -40,9 +40,7 @@ class NovaPermissionTool extends Tool
      */
     public function menu(Request $request)
     {
-        return MenuSection::make('Demo Tool')
-            ->path('/demo-tool')
-            ->icon('server');
+        //
     }
 
     public function roleResource(string $roleResource): NovaPermissionTool
