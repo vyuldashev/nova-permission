@@ -18,8 +18,8 @@ class AttachToRole extends Action
     /**
      * Perform the action on the given models.
      *
-     * @param ActionFields $fields
-     * @param Collection $models
+     * @param  ActionFields  $fields
+     * @param  Collection    $models
      * @return void
      */
     public function handle(ActionFields $fields, Collection $models)
@@ -29,17 +29,18 @@ class AttachToRole extends Action
             $role->givePermissionTo($model);
         }
     }
-    
+
     /**
      * Get the fields available on the action.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param  NovaRequest  $request
      * @return array
      */
     public function fields(NovaRequest $request)
     {
         return [
-            Select::make('Role')->options(Role::getModel()->get()->pluck('name', 'id')->toArray())->displayUsingLabels(),
+            Select::make('Role')->options(Role::getModel()->get()->pluck('name',
+                'id')->toArray())->displayUsingLabels(),
         ];
     }
 }
