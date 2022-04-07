@@ -160,7 +160,7 @@ class Permission extends Resource
     public function actions(Request $request): array
     {
         return [
-            new AttachToRole,
+            new AttachToRole(),
         ];
     }
 }
