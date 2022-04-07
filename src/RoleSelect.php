@@ -42,20 +42,20 @@ class RoleSelect extends Select
     }
 
     /**
-     * @param  NovaRequest     $request
-     * @param  string          $requestAttribute
+     * @param  NovaRequest  $request
+     * @param  string  $requestAttribute
      * @param  HasPermissions  $model
-     * @param  string          $attribute
+     * @param  string  $attribute
      */
     protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)
     {
-        if (!$request->exists($requestAttribute)) {
+        if (! $request->exists($requestAttribute)) {
             return;
         }
 
         $model->roles()->detach();
 
-        if (!is_null($request[$requestAttribute])) {
+        if (! is_null($request[$requestAttribute])) {
             $roleClass = app(PermissionRegistrar::class)->getRoleClass();
             $role = $roleClass::where('name', $request[$requestAttribute])->first();
             $model->assignRole($role);

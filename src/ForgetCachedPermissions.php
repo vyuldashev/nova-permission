@@ -9,13 +9,11 @@ use Spatie\Permission\PermissionRegistrar;
 
 class ForgetCachedPermissions
 {
-
     /**
      * Handle the incoming request.
      *
      * @param  Request  $request
      * @param  Closure  $next
-     *
      * @return mixed
      */
     public function handle(Request $request, Closure $next)
