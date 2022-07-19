@@ -8,9 +8,16 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.4|^8.0",
+        "php": "^8.0",
+        "laravel/nova": "^4.0",
         "spatie/laravel-permission": "^3.0|^4.0|^5.0"
     },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Vyuldashev\\NovaPermission\\": "src/"

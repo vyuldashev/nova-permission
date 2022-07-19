@@ -9,6 +9,7 @@ use Illuminate\Support\Collection;
 use Laravel\Nova\Actions\Action;
 use Laravel\Nova\Fields\ActionFields;
 use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
 class AttachToRole extends Action
 {
@@ -17,9 +18,9 @@ class AttachToRole extends Action
     /**
      * Perform the action on the given models.
      *
-     * @param ActionFields $fields
-     * @param Collection $models
-     * @return mixed
+     * @param  ActionFields  $fields
+     * @param  Collection  $models
+     * @return void
      */
     public function handle(ActionFields $fields, Collection $models)
     {
@@ -32,12 +33,14 @@ class AttachToRole extends Action
     /**
      * Get the fields available on the action.
      *
+     * @param  NovaRequest  $request
      * @return array
      */
-    public function fields()
+    public function fields(NovaRequest $request)
     {
         return [
-            Select::make('Role')->options(Role::getModel()->get()->pluck('name', 'id')->toArray())->displayUsingLabels(),
+            Select::make('Role')->options(Role::getModel()->get()->pluck('name',
+                'id')->toArray())->displayUsingLabels(),
         ];
     }
 }

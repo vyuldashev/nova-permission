@@ -28,10 +28,24 @@ class RoleSelect extends Select
     }
 
     /**
-     * @param NovaRequest $request
-     * @param string $requestAttribute
-     * @param HasPermissions $model
-     * @param string $attribute
+     * Display values using their corresponding specified labels.
+     *
+     * @return $this
+     */
+    public function displayUsingLabels(): RoleSelect
+    {
+        return $this->displayUsing(function ($value) {
+            return collect($this->meta['options'])
+                    ->where('value', optional($value->first())->name)
+                    ->first()['label'] ?? optional($value->first())->name;
+        });
+    }
+
+    /**
+     * @param  NovaRequest  $request
+     * @param  string  $requestAttribute
+     * @param  HasPermissions  $model
+     * @param  string  $attribute
      */
     protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)
     {
@@ -46,19 +60,5 @@ class RoleSelect extends Select
             $role = $roleClass::where('name', $request[$requestAttribute])->first();
             $model->assignRole($role);
         }
-    }
-
-    /**
-     * Display values using their corresponding specified labels.
-     *
-     * @return $this
-     */
-    public function displayUsingLabels(): RoleSelect
-    {
-        return $this->displayUsing(function ($value) {
-            return collect($this->meta['options'])
-                ->where('value', optional($value->first())->name)
-                ->first()['label'] ?? optional($value->first())->name;
-        });
     }
 }

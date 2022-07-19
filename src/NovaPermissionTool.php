@@ -2,7 +2,8 @@
 
 namespace Vyuldashev\NovaPermission;
 
-use Gate;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Tool;
 
@@ -28,6 +29,17 @@ class NovaPermissionTool extends Tool
 
         Gate::policy(config('permission.models.permission'), $this->permissionPolicy);
         Gate::policy(config('permission.models.role'), $this->rolePolicy);
+    }
+
+    /**
+     * Build the menu that renders the navigation links for the tool.
+     *
+     * @param  Request  $request
+     * @return mixed
+     */
+    public function menu(Request $request)
+    {
+        //
     }
 
     public function roleResource(string $roleResource): NovaPermissionTool
