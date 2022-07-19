@@ -2,18 +2,18 @@
 
 namespace Vyuldashev\NovaPermission;
 
-use Closure;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
+use Laravel\Nova\Nova;
 use Spatie\Permission\PermissionRegistrar;
+use Illuminate\Support\Str;
 
 class ForgetCachedPermissions
 {
     /**
      * Handle the incoming request.
      *
-     * @param  Request  $request
-     * @param  Closure  $next
+     * @param  \Illuminate\Http\Request|mixed  $request
+     * @param  \Closure  $next
+     *
      * @return mixed
      */
     public function handle(Request $request, Closure $next)

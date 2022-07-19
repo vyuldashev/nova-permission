@@ -20,7 +20,7 @@ class AttachToRole extends Action
      *
      * @param  ActionFields  $fields
      * @param  Collection  $models
-     * @return void
+     * @return mixed
      */
     public function handle(ActionFields $fields, Collection $models)
     {
