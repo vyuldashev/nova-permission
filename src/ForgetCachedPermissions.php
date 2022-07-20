@@ -5,6 +5,8 @@ namespace Vyuldashev\NovaPermission;
 use Laravel\Nova\Nova;
 use Spatie\Permission\PermissionRegistrar;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Closure;
 
 class ForgetCachedPermissions
 {
