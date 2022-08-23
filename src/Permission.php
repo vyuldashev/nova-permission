@@ -39,6 +39,8 @@ class Permission extends Resource
         'name',
     ];
 
+    public static $with = ['roles'];
+
     public static function getModel()
     {
         return app(PermissionRegistrar::class)->getPermissionClass();
