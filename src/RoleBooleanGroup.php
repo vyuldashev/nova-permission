@@ -18,7 +18,7 @@ class RoleBooleanGroup extends BooleanGroup
             $attribute,
             $resolveCallback ?? static function (Collection $permissions) {
                 return $permissions->mapWithKeys(function (RoleModel $role) {
-                    return [$role->name => true];
+                    return [(string) $role->name => true];
                 });
             }
         );
